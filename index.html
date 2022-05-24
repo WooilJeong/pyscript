@@ -3,7 +3,10 @@
         <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
         <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
         <py-env>
+            - matplotlib
             - numpy
+            - paths:
+                - ./data.py
         </py-env>
     </head>
     <body>
@@ -15,11 +18,21 @@
                  id="number_input"
                  min="1"
                  max="50"
-                 placeholder="Guess a number between 1 and 50"
+                 placeholder="1-50"
                 />
                 <button id="add_todo" pys-onClick="play_game">Guess</button>
             </div>
             <h1 id="result"></h1>
         </main>
+
+        <div id="plot"></div>
+        <py-script output="plot">
+import matplotlib.pyplot as plt
+from data import func
+x, y = func(n=1000)
+fig, ax = plt.subplots()
+ax.scatter(x, y)
+fig
+        </py-script>
     </body>
 </html>
